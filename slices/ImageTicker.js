@@ -6,18 +6,15 @@ export default function ImageTicker({ slice }) {
   return (
     <SliceFrame width="full" vertical="none">
       <Marquee speed={20}>
-        <div className="flex items-end">
-          {slice.items.map((item, index) => (
-            <div key={index}>
-              <Image
-                src={item.image.url}
-                alt={item.image.alt}
-                width={item.image.dimensions.width}
-                height={item.image.dimensions.height}
-              />
-            </div>
-          ))}
-        </div>
+        {slice.items.map((item, index) => (
+          <Image
+            key={index}
+            src={item.image.url}
+            alt={item.image.alt}
+            width={item.image.dimensions.width}
+            height={item.image.dimensions.height}
+          />
+        ))}
       </Marquee>
     </SliceFrame>
   );
