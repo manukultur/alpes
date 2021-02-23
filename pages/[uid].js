@@ -1,8 +1,14 @@
+import React from "react";
 import { client } from "prismic.config";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import Slices from "@/layouts/slices";
+import { useRouter } from "next/router";
+import Prismic from "prismic-javascript";
+import ErrorPage from "next/error";
 
-export default function Home({ data }) {
+const Slices = dynamic(import("@/layouts/slices"));
+
+export default function Page({ data, uid }) {
   const Schema = {
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -23,8 +29,25 @@ export default function Home({ data }) {
     },
   };
 
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!data || !uid) {
+    return (
+      <React.Fragment>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorPage statusCode={404} />
+      </React.Fragment>
+    );
+  }
+
   return (
-    <>
+    <React.Fragment>
       <Head>
         {/* Meta */}
         <meta
@@ -54,10 +77,10 @@ export default function Home({ data }) {
           content={data.meta_description}
           key="twdescription"
         />
-        <meta name="twitter:site" content="" key="twsite" />
+        <meta name="twitter:site" content={`/${uid}`} key="twsite" />
 
         {/* Open Graph */}
-        <meta property="og:url" content="" key="ogurl" />
+        <meta property="og:url" content={`/${uid}`} key="ogurl" />
         <meta
           property="og:image"
           content={data.meta_image?.url}
@@ -66,11 +89,7 @@ export default function Home({ data }) {
         <meta property="og:site_name" content="" key="ogsitename" />
         <meta property="og:type" content="website" key="ogtype" />
         <meta property="og:locale" content="de_DE" key="oglocale" />
-        <meta
-          property="og:title"
-          content={data.meta_title + " | "}
-          key="ogtitle"
-        />
+        <meta property="og:title" content={data.meta_title} key="ogtitle" />
         <meta
           property="og:description"
           content={data.meta_description}
@@ -85,17 +104,38 @@ export default function Home({ data }) {
         />
       </Head>
       <Slices data={data} />
-    </>
+    </React.Fragment>
   );
 }
 
-export async function getStaticProps() {
-  const { data } = await client.getByUID("page", "startseite", {
+export async function getStaticProps({ params }) {
+  const { uid } = params;
+
+  const { data } = await client.getByUID("page", uid, {
     fetchLinks: "page.title",
   });
 
   return {
-    props: { data },
-    revalidate: 2,
+    props: {
+      data,
+      uid: uid,
+    },
+    revalidate: 60,
+  };
+}
+
+export async function getStaticPaths() {
+  const { results } = await client.query(
+    Prismic.Predicates.at("document.type", "page"),
+    { pageSize: 100, lang: "*" }
+  );
+  const paths = results.map((page) => ({
+    params: {
+      uid: page.uid,
+    },
+  }));
+  return {
+    paths,
+    fallback: true,
   };
 }
