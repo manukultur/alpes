@@ -9,7 +9,9 @@ export default function Marquee({ children, speed }) {
       onMouseEnter={() => setIsMoving(false)}
       onMouseLeave={() => setIsMoving(true)}
     >
-      <Ticker speed={speed || 5} /*move={isMoving}*/>{children}</Ticker>
+      <Ticker speed={speed || 5} /*move={isMoving}*/>
+        {() => <div className="">{children}</div>}
+      </Ticker>
     </div>
   );
 }
