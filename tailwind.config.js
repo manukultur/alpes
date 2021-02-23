@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: [
     "./pages/**/*.js",
@@ -11,7 +13,11 @@ module.exports = {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        apple: colors.green,
+      },
+    },
   },
   variants: {
     extend: {},
