@@ -19,7 +19,9 @@ export default function Navigation() {
     return (
       <li className="flow-root">
         <Link href={`/${uid}`}>
-          <a className="hover:underline">{text}</a>
+          <a className="hover:underline" onClick={() => setIsOpen(!isOpen)}>
+            {text}
+          </a>
         </Link>
         <div className="text-sm text-gray-400">{description}</div>
       </li>
@@ -52,6 +54,9 @@ export default function Navigation() {
               />
             </svg>
           </button>
+          <Link href="/">
+            <a className="font-bold uppercase tracking-wider">Logo</a>
+          </Link>
           <div className="text-sm text-gray-600">+49 (0) 171 867 13 89</div>
         </div>
       </div>
