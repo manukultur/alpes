@@ -14,10 +14,10 @@ export default function SplitPage({ slice }) {
           <div className="text-4xl font-extrabold">
             <Title text={slice.primary.split_title} />
           </div>
-          <div className="text-4xl font-extrabold text-blue-600">
+          <div className="text-4xl font-extrabold text-blue-600 mt-4">
             <Title text={slice.primary.split_subtitle} />
           </div>
-          <div className="py-20">
+          <div className="py-10">
             <RichText text={slice.primary.split_body} />
           </div>
         </div>

@@ -79,9 +79,9 @@ export default function Navigation() {
             <div className="bg-white w-1/2"></div>
             <div className="bg-gray-50 w-1/2"></div>
           </div>
-          <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3">
             <nav
-              className="grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12"
+              className="grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-3 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12 lg:col-span-2"
               aria-labelledby="solutionsHeading"
             >
               <h2 id="solutionsHeading" className="sr-only">
@@ -96,12 +96,37 @@ export default function Navigation() {
                     description="Küchen Beispiele"
                   />
                   <PageLink
-                    text="Designs"
+                    text="Fakten"
+                    uid="design"
+                    description="Downloads, Broschüren"
+                  />
+                </LinkList>
+              </div>
+              <div>
+                <Category text="Design" />
+                <LinkList>
+                  <PageLink
+                    text="Deine Regeln"
                     uid="edelstahlkueche-nach-deinen-regeln"
-                    description="Küchen Beispiele"
+                    description="Küchen die dir folgen"
                   />
                   <PageLink
-                    text="Fakten"
+                    text="Deine Mischung"
+                    uid="edelstahlkueche-deine-mischung"
+                    description="Du mischst die Karten"
+                  />
+                  <PageLink
+                    text="Ganz oben"
+                    uid="design"
+                    description="Downloads, Broschüren"
+                  />
+                  <PageLink
+                    text="Ohne Zwang"
+                    uid="design"
+                    description="Downloads, Broschüren"
+                  />
+                  <PageLink
+                    text="Auch für draussen"
                     uid="design"
                     description="Downloads, Broschüren"
                   />
@@ -116,15 +141,16 @@ export default function Navigation() {
                     description="Live im Showroom"
                   />
                   <PageLink
-                    text="Videos"
-                    uid="design"
-                    description="Kochen mit Musik"
-                  />
-                  <PageLink
                     text="Beratung"
                     uid="beratung"
                     description="Persönlich und schnell"
                   />
+                  <PageLink
+                    text="Videos"
+                    uid="design"
+                    description="Kochen mit Musik"
+                  />
+
                   <PageLink
                     text="Anfahrt"
                     uid="design"
