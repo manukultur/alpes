@@ -55,7 +55,12 @@ export default function Navigation() {
             </svg>
           </button>
           <Link href="/">
-            <a className="font-bold uppercase tracking-wider">Logo</a>
+            <a
+              className="font-bold uppercase tracking-wider"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Logo
+            </a>
           </Link>
           <div className="text-sm text-gray-600">+49 (0) 171 867 13 89</div>
         </div>
@@ -92,7 +97,7 @@ export default function Navigation() {
                   />
                   <PageLink
                     text="Designs"
-                    uid="design"
+                    uid="edelstahlkueche-nach-deinen-regeln"
                     description="Küchen Beispiele"
                   />
                   <PageLink
@@ -114,6 +119,11 @@ export default function Navigation() {
                     text="Videos"
                     uid="design"
                     description="Kochen mit Musik"
+                  />
+                  <PageLink
+                    text="Beratung"
+                    uid="beratung"
+                    description="Persönlich und schnell"
                   />
                   <PageLink
                     text="Anfahrt"
