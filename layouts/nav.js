@@ -91,7 +91,7 @@ export default function Navigation() {
                 <Category text="Küchen" />
                 <LinkList>
                   <PageLink
-                    text="Explore"
+                    text="Katalog"
                     uid="design"
                     description="Küchen Beispiele"
                   />
@@ -136,7 +136,7 @@ export default function Navigation() {
                 <Category text="Showroom" />
                 <LinkList>
                   <PageLink
-                    text="Events, Kurse"
+                    text="Events"
                     uid="design"
                     description="Live im Showroom"
                   />
@@ -144,11 +144,6 @@ export default function Navigation() {
                     text="Beratung"
                     uid="beratung"
                     description="Persönlich und schnell"
-                  />
-                  <PageLink
-                    text="Videos"
-                    uid="design"
-                    description="Kochen mit Musik"
                   />
 
                   <PageLink
