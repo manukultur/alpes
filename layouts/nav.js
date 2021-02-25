@@ -7,7 +7,7 @@ export default function Navigation() {
 
   const Category = ({ text }) => {
     return (
-      <h3 className="uppercase tracking-wider text-gray-500 text-sm">{text}</h3>
+      <h3 className="text-sm tracking-wider text-gray-500 uppercase">{text}</h3>
     );
   };
 
@@ -29,7 +29,7 @@ export default function Navigation() {
   };
 
   return (
-    <div className="z-50 sticky top-0 ">
+    <div className="sticky top-0 z-50 ">
       <div className="relative z-10 bg-white shadow">
         <div className="flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <button
@@ -44,7 +44,7 @@ export default function Navigation() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
-              className="h-5 w-5"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -56,7 +56,7 @@ export default function Navigation() {
           </button>
           <Link href="/">
             <a
-              className="font-bold uppercase tracking-wider"
+              className="font-bold tracking-wider uppercase"
               onClick={() => setIsOpen(!isOpen)}
             >
               Logo
@@ -74,14 +74,14 @@ export default function Navigation() {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 -translate-y-1"
       >
-        <div className="absolute z-10 inset-x-0 transform shadow-lg">
+        <div className="absolute inset-x-0 z-10 transform shadow-lg">
           <div className="absolute inset-0 flex" aria-hidden="true">
-            <div className="bg-white w-1/2"></div>
-            <div className="bg-gray-50 w-1/2"></div>
+            <div className="w-1/2 bg-white"></div>
+            <div className="w-1/2 bg-gray-50"></div>
           </div>
-          <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3">
+          <div className="relative grid grid-cols-1 mx-auto max-w-7xl lg:grid-cols-3">
             <nav
-              className="grid gap-y-10 px-4 py-8 bg-white sm:grid-cols-3 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12 lg:col-span-2"
+              className="grid px-4 py-8 bg-white gap-y-10 sm:grid-cols-3 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12 lg:col-span-2"
               aria-labelledby="solutionsHeading"
             >
               <h2 id="solutionsHeading" className="sr-only">
@@ -117,18 +117,18 @@ export default function Navigation() {
                   />
                   <PageLink
                     text="Ganz oben"
-                    uid="design"
-                    description="Downloads, Broschüren"
+                    uid="edelstahlkueche-ganz-oben"
+                    description="Du entscheidest, wie hoch"
                   />
                   <PageLink
                     text="Ohne Zwang"
-                    uid="design"
-                    description="Downloads, Broschüren"
+                    uid="edelstahlkueche-ohne-zwang"
+                    description="Mal eben nach draussen rollen."
                   />
                   <PageLink
-                    text="Auch für draussen"
-                    uid="design"
-                    description="Downloads, Broschüren"
+                    text="Am Pool"
+                    uid="edelstahlkueche-am-pool"
+                    description="Perfektes poolside Kochen"
                   />
                 </LinkList>
               </div>
@@ -159,23 +159,23 @@ export default function Navigation() {
                 </LinkList>
               </div>
             </nav>
-            <div className="bg-gray-50 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12">
+            <div className="px-4 py-8 bg-gray-50 sm:py-12 sm:px-6 lg:px-8 xl:pl-12">
               <div>
                 <Category text="Blog" />
                 <LinkList>
                   <li className="flow-root">
                     <a
                       href="#"
-                      className="-m-3 p-3 flex rounded-lg hover:bg-gray-100 transition ease-in-out duration-150"
+                      className="flex p-3 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100"
                     >
-                      <div className="hidden sm:block flex-shrink-0">
+                      <div className="flex-shrink-0 hidden sm:block">
                         <img
-                          className="w-32 h-20 object-cover rounded-md"
+                          className="object-cover w-32 h-20 rounded-md"
                           src="/limone.jpg"
                           alt=""
                         />
                       </div>
-                      <div className="min-w-0 flex-1 sm:ml-8">
+                      <div className="flex-1 min-w-0 sm:ml-8">
                         <h4 className="text-base font-medium text-gray-900 truncate">
                           Playliste am Start
                         </h4>
@@ -191,7 +191,7 @@ export default function Navigation() {
               <div className="mt-6 text-sm font-medium">
                 <a
                   href="#"
-                  className="text-blue-600 hover:text-indigo-500 transition ease-in-out duration-150"
+                  className="text-blue-600 transition duration-150 ease-in-out hover:text-indigo-500"
                 >
                   Alle Beiträge <span aria-hidden="true">&rarr;</span>
                 </a>
