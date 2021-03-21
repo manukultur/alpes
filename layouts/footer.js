@@ -4,47 +4,6 @@ export default function Footer() {
   return (
     <footer className="py-20 bg-white">
       <div className="px-4 py-12 mx-auto overflow-hidden max-w-7xl sm:px-6 lg:px-8">
-        {/*
-        <nav
-          className="flex flex-wrap justify-center -mx-5 -my-2"
-          aria-label="Footer"
-        >
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              About
-            </a>
-          </div>
-
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              Blog
-            </a>
-          </div>
-
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              Jobs
-            </a>
-          </div>
-
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              Press
-            </a>
-          </div>
-
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              Accessibility
-            </a>
-          </div>
-
-          <div className="px-5 py-2">
-            <a href="#" className="text-base text-gray-500 hover:text-gray-900">
-              Partners
-            </a>
-          </div>
-        </nav>*/}
         <div className="flex justify-center mt-8 space-x-6">
           <a href="#" className="text-gray-400 hover:text-gray-500">
             <span className="sr-only">Facebook</span>
@@ -84,7 +43,7 @@ export default function Footer() {
           <p>
             &copy; 2020 Workflow, Inc. All rights reserved.{" "}
             <Link href={`/impressum`}>
-              <a className="hover:underline">Impressum &amp; AGB</a>
+              <a className="underline">Impressum &amp; AGB</a>
             </Link>
           </p>
         </div>
