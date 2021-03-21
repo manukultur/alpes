@@ -5,7 +5,7 @@ import Marquee from "react-fast-marquee";
 export default function ImageTicker({ slice }) {
   return (
     <SliceFrame width="full" vertical="none">
-      <Marquee speed={160} className="" pauseOnHover gradientWidth={20}>
+      <Marquee speed={160} gradientWidth={20}>
         {slice.items.map((item, index) => (
           <div className="flex flex-col justify-end h-full w-96">
             <Image
@@ -14,6 +14,7 @@ export default function ImageTicker({ slice }) {
               alt={item.image.alt}
               width={item.image.dimensions.width}
               height={item.image.dimensions.height}
+              priority
             />
           </div>
         ))}
