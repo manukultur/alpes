@@ -7,7 +7,7 @@ export default function SplitPage({ slice }) {
   return (
     <SliceFrame vertical="none">
       <div className="md:flex">
-        <div className="px-10 md:w-1/2 lg:w-1/3">
+        <div className="md:px-10 md:w-1/2 lg:w-1/3">
           <p className="py-10 text-sm tracking-wider text-gray-600 uppercase">
             {slice.primary.split_section}
           </p>

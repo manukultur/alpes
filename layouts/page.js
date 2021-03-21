@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import Navigation from "./nav";
 import Footer from "./footer";
+import Alert from "./alert";
 
 const PageContext = createContext();
 
@@ -11,6 +12,7 @@ export function PageLayout({ children, ...pageProps }) {
         {/*<Navigation />*/}
         {children}
         <Footer />
+        <Alert />
       </div>
     </PageContext.Provider>
   );
