@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 
 const Text = dynamic(import("@/slices/PageText"));
 const Headline = dynamic(import("@/slices/Headline"));
-const ImageTicker = dynamic(import("@/slices/ImageTicker"));
+const ImageMarquee = dynamic(import("@/slices/ImageMarquee"));
 const ImageGrid = dynamic(import("@/slices/ImageGrid"));
 const SplitPage = dynamic(import("@/slices/SplitPage"));
 
@@ -15,7 +15,7 @@ function Slices(props) {
       case "headline":
         return <Headline key={index} slice={slice} />;
       case "image_ticker":
-        return <ImageTicker key={index} slice={slice} />;
+        return <ImageMarquee key={index} slice={slice} />;
       case "image_grid":
         return <ImageGrid key={index} slice={slice} />;
       case "split_page":
