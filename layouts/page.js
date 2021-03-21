@@ -8,7 +8,7 @@ const PageContext = createContext();
 export function PageLayout({ children, ...pageProps }) {
   return (
     <PageContext.Provider value={{ pageProps: pageProps }}>
-      <div className="relative min-h-screen antialiased bg-white">
+      <div className="relative min-h-screen pt-6 antialiased bg-white">
         {/*<Navigation />*/}
         {children}
         <Footer />
