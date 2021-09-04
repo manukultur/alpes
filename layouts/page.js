@@ -9,7 +9,7 @@ export function PageLayout({ children, ...pageProps }) {
   return (
     <PageContext.Provider value={{ pageProps: pageProps }}>
       <div className="relative min-h-screen pt-6 antialiased bg-white md:mt-0">
-        {/*<Navigation />*/}
+        <Navigation />
         {children}
         <Footer />
         <Alert />

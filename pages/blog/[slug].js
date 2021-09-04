@@ -1,9 +1,20 @@
+import React from "react";
 import { client } from "prismic.config";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import Slices from "@/layouts/slices";
+import { useRouter } from "next/router";
+import Prismic from "prismic-javascript";
+import ErrorPage from "next/error";
 import CircleIndicator from "@/components/motion";
+import Article from "@/slices/Article";
 
-export default function Home({ data }) {
+const Slices = dynamic(import("@/layouts/slices"));
+
+export default function BlogArticle({ data, slug }) {
+
+
+  console.log(data)
+
   const Schema = {
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -24,8 +35,25 @@ export default function Home({ data }) {
     },
   };
 
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!data || !slug) {
+    return (
+      <React.Fragment>
+        <Head>
+          <meta name="robots" content="noindex" />
+        </Head>
+        <ErrorPage statusCode={404} />
+      </React.Fragment>
+    );
+  }
+
   return (
-    <>
+    <React.Fragment>
       <Head>
         {/* Meta */}
         <meta
@@ -55,10 +83,10 @@ export default function Home({ data }) {
           content={data.meta_description}
           key="twdescription"
         />
-        <meta name="twitter:site" content="" key="twsite" />
+        <meta name="twitter:site" content={`/${slug}`} key="twsite" />
 
         {/* Open Graph */}
-        <meta property="og:url" content="" key="ogurl" />
+        <meta property="og:url" content={`/${slug}`} key="ogurl" />
         <meta
           property="og:image"
           content={data.meta_image?.url}
@@ -67,11 +95,7 @@ export default function Home({ data }) {
         <meta property="og:site_name" content="" key="ogsitename" />
         <meta property="og:type" content="website" key="ogtype" />
         <meta property="og:locale" content="de_DE" key="oglocale" />
-        <meta
-          property="og:title"
-          content={data.meta_title + " | "}
-          key="ogtitle"
-        />
+        <meta property="og:title" content={data.meta_title} key="ogtitle" />
         <meta
           property="og:description"
           content={data.meta_description}
@@ -85,19 +109,41 @@ export default function Home({ data }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(Schema) }}
         />
       </Head>
+      <Article body={data.body} title={data.title} />
       <Slices data={data} />
       <CircleIndicator />
-    </>
+    </React.Fragment>
   );
 }
 
-export async function getStaticProps() {
-  const { data } = await client.getByUID("page", "startseite", {
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+
+  const { data } = await client.getByUID("article", slug, {
     fetchLinks: "page.title",
   });
 
   return {
-    props: { data },
-    revalidate: 2,
+    props: {
+      data,
+      slug: slug,
+    },
+    revalidate: 60,
+  };
+}
+
+export async function getStaticPaths() {
+  const { results } = await client.query(
+    Prismic.Predicates.at("document.type", "article"),
+    { pageSize: 100, lang: "*" }
+  );
+  const paths = results.map((article) => ({
+    params: {
+      slug: article.uid,
+    },
+  }));
+  return {
+    paths,
+    fallback: true,
   };
 }

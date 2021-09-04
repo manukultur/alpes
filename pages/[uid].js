@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Prismic from "prismic-javascript";
 import ErrorPage from "next/error";
+import CircleIndicator from "@/components/motion";
 
 const Slices = dynamic(import("@/layouts/slices"));
 
@@ -104,6 +105,7 @@ export default function Page({ data, uid }) {
         />
       </Head>
       <Slices data={data} />
+      <CircleIndicator />
     </React.Fragment>
   );
 }
