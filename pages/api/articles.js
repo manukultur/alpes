@@ -1,13 +1,15 @@
 import { client } from "prismic.config";
 import Prismic from "prismic-javascript";
 
-const getArticles = async (req, res) => {
-  const { data } = await client.query(
+async function getArticles(req, res) {
+  const data = await client.query(
     Prismic.Predicates.at("document.type", "article"),
-    { pageSize: 100, lang: "*" }
+    {
+      pageSize: 10,
+    }
   );
 
-  return res.status(200).json(data);
-};
+  res.status(200).json(data);
+}
 
 export default getArticles;

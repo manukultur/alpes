@@ -5,8 +5,6 @@ import { Date, RichText } from "prismic-reactjs";
 import { format } from "date-fns";
 
 export default function BlogIndex({ data }) {
-  console.log(data);
-
   return (
     <div className="relative px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
       <div className="absolute inset-0">
