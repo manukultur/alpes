@@ -41,10 +41,14 @@ export default function Footer() {
           <h4 className="font-bold">Küche und Welt</h4>
           <p>Weilerstraße 71, 73312 Geislingen an der Steige</p>
           <p>
-            &copy; 2020 Workflow, Inc. All rights reserved.{" "}
-            <Link href={`/impressum`}>
-              <a className="underline">Impressum &amp; AGB</a>
-            </Link>
+            <div className="space-x-2 underline">
+              <Link href={`/impressum`}>
+                <a className="underline">Impressum</a>
+              </Link>
+              <Link href={`/datenschutz`}>
+                <a className="underline">Datenschutz</a>
+              </Link>
+            </div>
           </p>
         </div>
       </div>

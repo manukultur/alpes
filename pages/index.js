@@ -4,6 +4,8 @@ import Slices from "@/layouts/slices";
 import CircleIndicator from "@/components/motion";
 
 export default function Home({ data }) {
+  console.log(data);
+
   const Schema = {
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -86,7 +88,6 @@ export default function Home({ data }) {
         />
       </Head>
       <Slices data={data} />
-      <CircleIndicator />
     </>
   );
 }

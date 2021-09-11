@@ -11,9 +11,7 @@ import Article from "@/slices/Article";
 const Slices = dynamic(import("@/layouts/slices"));
 
 export default function BlogArticle({ data, slug }) {
-
-
-  console.log(data)
+  console.log(data);
 
   const Schema = {
     "@context": "http://schema.org",
@@ -111,7 +109,6 @@ export default function BlogArticle({ data, slug }) {
       </Head>
       <Article body={data.body} title={data.title} />
       <Slices data={data} />
-      <CircleIndicator />
     </React.Fragment>
   );
 }

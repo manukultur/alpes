@@ -27,7 +27,7 @@ export default function Navigation() {
                   "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 )}
               >
-                <span>Deine Edelstahlküche</span>
+                <span>Menu</span>
                 <ChevronDownIcon
                   className={classNames(
                     open ? "text-gray-600" : "text-gray-400",

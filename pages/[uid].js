@@ -10,6 +10,8 @@ import CircleIndicator from "@/components/motion";
 const Slices = dynamic(import("@/layouts/slices"));
 
 export default function Page({ data, uid }) {
+  console.log(data);
+
   const Schema = {
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -105,7 +107,6 @@ export default function Page({ data, uid }) {
         />
       </Head>
       <Slices data={data} />
-      <CircleIndicator />
     </React.Fragment>
   );
 }
