@@ -6,7 +6,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import { RichText } from "prismic-reactjs";
 const fetcher = (url) => fetch(url).then((r) => r.json());
-
+import Image from "next/image";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -15,12 +15,14 @@ export default function Navigation() {
   const { data: articles } = useSWR(`/api/articles`, fetcher);
   const { data: navigation } = useSWR(`/api/navigation`, fetcher);
 
+  console.log(navigation);
+
   return (
     <Popover className="relative z-10">
       {({ open }) => (
         <>
           <div className="relative z-10 bg-white shadow">
-            <div className="flex px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="flex justify-between px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <Popover.Button
                 className={classNames(
                   open ? "text-gray-900" : "text-gray-500",
@@ -36,6 +38,11 @@ export default function Navigation() {
                   aria-hidden="true"
                 />
               </Popover.Button>
+              <div className="flex items-center">
+                <p className="text-sm text-gray-500 ">
+                  <a href="tel:+49 (0) 171 867 13 89">+49 (0) 171 867 13 89</a>
+                </p>
+              </div>
             </div>
           </div>
 

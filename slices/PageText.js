@@ -4,7 +4,7 @@ import Title from "@/components/title";
 
 export default function Text({ slice }) {
   return (
-    <SliceFrame vertical="none">
+    <SliceFrame vertical={slice.primary.vertical_padding}>
       <div className="pb-20 sm:flex">
         <div className="sm:w-1/3"></div>
         <div className="sm:-ml-6">

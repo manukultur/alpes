@@ -114,7 +114,7 @@ export const htmlSerializer = function (type, element, content, children, key) {
       );
 
     case Elements.list: // Unordered List
-      props = { className: "list-disc" };
+      props = { className: "" };
       return React.createElement(
         "ul",
         propsWithUniqueKey(props, key),

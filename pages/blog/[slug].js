@@ -107,7 +107,12 @@ export default function BlogArticle({ data, slug }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(Schema) }}
         />
       </Head>
-      <Article body={data.body} title={data.title} />
+      <Article
+        body={data.body}
+        title={data.title}
+        data={data}
+        features={data.features}
+      />
       <Slices data={data} />
     </React.Fragment>
   );
