@@ -6,7 +6,6 @@ import useSWR from "swr";
 import Link from "next/link";
 import { RichText } from "prismic-reactjs";
 const fetcher = (url) => fetch(url).then((r) => r.json());
-import Image from "next/image";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -21,21 +20,28 @@ export default function Navigation() {
         <>
           <div className="relative z-10 bg-white shadow">
             <div className="flex justify-between px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <Popover.Button
-                className={classNames(
-                  open ? "text-gray-900" : "text-gray-500",
-                  "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                )}
-              >
-                <span>Menu</span>
-                <ChevronDownIcon
+              <div className="">
+                <div className="hidden sm:inline-block">
+                  <Link href="/">
+                    <a className="mr-3 text-gray-600">Home</a>
+                  </Link>
+                </div>
+                <Popover.Button
                   className={classNames(
-                    open ? "text-gray-600" : "text-gray-400",
-                    "ml-2 h-5 w-5 group-hover:text-gray-500"
+                    open ? "text-gray-900" : "text-gray-500",
+                    "group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   )}
-                  aria-hidden="true"
-                />
-              </Popover.Button>
+                >
+                  <span>Menu</span>
+                  <ChevronDownIcon
+                    className={classNames(
+                      open ? "text-gray-600" : "text-gray-400",
+                      "ml-2 h-5 w-5 group-hover:text-gray-500"
+                    )}
+                    aria-hidden="true"
+                  />
+                </Popover.Button>
+              </div>
               <div className="flex items-center">
                 <p className="text-sm text-gray-500 ">
                   <a href="tel:+49 (0) 171 867 13 89">+49 (0) 171 867 13 89</a>
@@ -72,15 +78,24 @@ export default function Navigation() {
                   <h2 id="navigation-heading" className="sr-only">
                     Navigations Menu
                   </h2>
+                  <div className="sm:hidden">
+                    <Link href={`/`}>
+                      <a>
+                        <Popover.Button as="div" className="mr-3 text-gray-600">
+                          Home
+                        </Popover.Button>
+                      </a>
+                    </Link>
+                  </div>
                   {navigation &&
-                    navigation.data.body.map((section) => (
-                      <div>
+                    navigation.data.body.map((section, index) => (
+                      <div key={index}>
                         <h3 className="text-sm font-medium tracking-wide text-gray-500 uppercase">
                           {section.primary.section_title}
                         </h3>
                         <ul role="list" className="mt-5 space-y-6">
-                          {section.items.map((item) => (
-                            <li key={item.link.slug} className="flow-root">
+                          {section.items.map((item, index) => (
+                            <li key={index} className="flow-root">
                               <Link href={`/${item.link.uid}`}>
                                 <a>
                                   <Popover.Button

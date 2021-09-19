@@ -9,7 +9,7 @@ export default function Headline({ slice }) {
           slice.primary.headline_position == "center" && "text-center"
         }`}
       >
-        <p className="pb-10 text-sm tracking-wider text-gray-600 uppercase sm:py-10">
+        <p className="py-10 text-sm tracking-wider text-gray-600 uppercase">
           {slice.primary.headline_section}
         </p>
         <div className="text-4xl font-extrabold">
