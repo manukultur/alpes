@@ -5,6 +5,7 @@ import { Date, RichText } from "prismic-reactjs";
 import { format } from "date-fns";
 
 export default function BlogIndex({ data }) {
+  console.log(data);
   return (
     <div className="relative px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
       <div className="absolute inset-0">
@@ -27,15 +28,25 @@ export default function BlogIndex({ data }) {
               className="flex flex-col overflow-hidden rounded-lg shadow-lg"
             >
               <div className="flex-shrink-0">
-                <img
-                  className="object-cover w-full h-48"
-                  src={article.data.cover_image.url}
-                  alt={article.data.cover_image.alt}
-                />
+                {article.data.cover_image.url ? (
+                  <img
+                    className="object-cover w-full h-48"
+                    src={article.data.cover_image.url}
+                    alt={article.data.cover_image.alt}
+                  />
+                ) : (
+                  <div className="w-full h-48 bg-gray-50"></div>
+                )}
               </div>
               <div className="flex flex-col justify-between flex-1 p-6 bg-white">
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-indigo-600">
+                  <p
+                    className={`text-sm font-medium ${
+                      article.data.category === "Blue"
+                        ? "text-blue-600"
+                        : "text-yellow-600"
+                    }`}
+                  >
                     <a href="" className="hover:underline">
                       {article.data.category}
                     </a>
@@ -53,20 +64,13 @@ export default function BlogIndex({ data }) {
                 </div>
                 <div className="flex items-center mt-6">
                   <div className="">
-                    <p className="text-sm font-medium text-gray-900">
-                      <a href="" className="hover:underline">
-                        Name
-                      </a>
-                    </p>
                     <div className="flex space-x-1 text-sm text-gray-500">
-                      <time dateTime={article.first_publication_date}>
+                      <time dateTime={article.data.publication_date}>
                         {format(
-                          Date(article.first_publication_date),
-                          "dd. LLL, yy"
+                          Date(article.data.publication_date),
+                          "dd. LLL, yyyy"
                         )}
                       </time>
-                      <span aria-hidden="true">&middot;</span>
-                      <span> read</span>
                     </div>
                   </div>
                 </div>
@@ -82,7 +86,7 @@ export default function BlogIndex({ data }) {
 export async function getStaticProps() {
   const data = await client.query(
     Prismic.Predicates.at("document.type", "article"),
-    { pageSize: 10 }
+    { pageSize: 100, orderings: "[my.article.publication_date desc]" }
   );
 
   return {

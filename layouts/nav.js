@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import { ChevronDownIcon, HomeIcon } from "@heroicons/react/solid";
 import useSWR from "swr";
 import Link from "next/link";
 import { RichText } from "prismic-reactjs";
@@ -20,10 +20,12 @@ export default function Navigation() {
         <>
           <div className="relative z-10 bg-white shadow">
             <div className="flex justify-between px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-              <div className="">
-                <div className="hidden sm:inline-block">
+              <div className="flex items-center">
+                <div className="hidden sm:block">
                   <Link href="/">
-                    <a className="mr-3 text-gray-600">Home</a>
+                    <a className="flex mr-6">
+                      <HomeIcon className="w-5 h-5 text-gray-400" />
+                    </a>
                   </Link>
                 </div>
                 <Popover.Button
@@ -81,8 +83,11 @@ export default function Navigation() {
                   <div className="sm:hidden">
                     <Link href={`/`}>
                       <a>
-                        <Popover.Button as="div" className="mr-3 text-gray-600">
-                          Home
+                        <Popover.Button as="div" className="">
+                          <div className="flex items-center">
+                            <HomeIcon className="w-5 h-5 mr-3 text-gray-400 " />
+                            <span className="hover:underline">Home</span>
+                          </div>
                         </Popover.Button>
                       </a>
                     </Link>
@@ -96,7 +101,11 @@ export default function Navigation() {
                         <ul role="list" className="mt-5 space-y-6">
                           {section.items.map((item, index) => (
                             <li key={index} className="flow-root">
-                              <Link href={`/${item.link.uid}`}>
+                              <Link
+                                href={`/${
+                                  item.link?.uid ? item.link.uid : item.slug
+                                }`}
+                              >
                                 <a>
                                   <Popover.Button
                                     as="span"

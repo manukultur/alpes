@@ -14,6 +14,7 @@
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
     "@tailwindui/react": "^0.1.1",
+    "@u-wave/react-vimeo": "^0.9.5",
     "autoprefixer": "^10.2.4",
     "date-fns": "^2.23.0",
     "framer-motion": "^4.1.9",
@@ -28,6 +29,7 @@
     "react-fast-marquee": "^1.1.1",
     "react-page-visibility": "^6.4.0",
     "react-ticker": "^1.2.2",
+    "react-youtube": "^7.13.1",
     "swr": "^1.0.0",
     "tailwindcss": "^2.0.3"
   }

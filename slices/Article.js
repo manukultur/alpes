@@ -1,8 +1,10 @@
 import RichText from "@/components/richtext";
 import Title from "@/components/title";
-import { data } from "autoprefixer";
+import YouTube from "@/components/youtube";
 
 export default function Article({ body, title, features, data }) {
+  console.log(data);
+
   return (
     <div className="relative py-16 overflow-hidden bg-white">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
@@ -123,7 +125,11 @@ export default function Article({ body, title, features, data }) {
       <div className="relative px-4 sm:px-6 lg:px-8">
         <div className="mx-auto text-lg max-w-prose">
           <h1>
-            <span className="block text-base font-semibold tracking-wide text-center text-blue-600 uppercase">
+            <span
+              className={`block text-base font-semibold tracking-wide text-center uppercase ${
+                data.category === "Blue" ? "text-blue-600" : "text-yellow-500"
+              }`}
+            >
               {data.category}
             </span>
             <span className="block mt-2 text-3xl font-extrabold leading-8 tracking-tight text-center text-gray-900 sm:text-4xl">
@@ -133,20 +139,37 @@ export default function Article({ body, title, features, data }) {
         </div>
 
         <div className="mx-auto mt-16 prose prose-lg text-gray-500 prose-indigo">
-          <RichText text={body} />
+          {data.video?.provider_name && data.youtube_video_id && (
+            <div className="flex pb-16 place-content-center">
+              {data.video?.provider_name === "YouTube" ? (
+                <YouTube videoId={data.youtube_video_id} />
+              ) : (
+                ""
+              )}
+            </div>
+          )}
+
+          <RichText
+            text={body}
+            classes={`${
+              data.layout === "poem" &&
+              "max-w-lg bg-yellow-50 rounded-xl p-20 mx-auto"
+            }`}
+          />
         </div>
         <div className="mx-auto text-lg max-w-prose">
           <dl className="grid grid-cols-1 mt-16 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-            {features.map((feature, index) => (
-              <div key={index} className="pt-4 border-t border-gray-200">
-                <dt className="font-medium text-gray-900">
-                  {feature.feature_title}
-                </dt>
-                <dd className="mt-2 text-sm text-gray-500">
-                  <RichText text={feature.feature_description} />
-                </dd>
-              </div>
-            ))}
+            {features[0].feature_title &&
+              features.map((feature, index) => (
+                <div key={index} className="pt-4 border-t border-gray-200">
+                  <dt className="font-medium text-gray-900">
+                    {feature.feature_title}
+                  </dt>
+                  <dd className="mt-2 text-sm text-gray-500">
+                    <RichText text={feature.feature_description} />
+                  </dd>
+                </div>
+              ))}
           </dl>
         </div>
       </div>

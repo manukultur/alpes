@@ -6,7 +6,8 @@
       "@/components/*": ["components/*"],
       "@/layouts/*": ["layouts/*"],
       "@/styles/*": ["styles/*"],
-      "@/slices/*": ["slices/*"]
+      "@/slices/*": ["slices/*"],
+      "@/public/*": ["public/*"]
     }
   }
 }
