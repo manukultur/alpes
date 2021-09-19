@@ -3,6 +3,7 @@ import Prismic from "prismic-javascript";
 import Link from "next/link";
 import { Date, RichText } from "prismic-reactjs";
 import { format } from "date-fns";
+import { PlayIcon } from "@heroicons/react/solid";
 
 export default function BlogIndex({ data }) {
   console.log(data);
@@ -35,7 +36,17 @@ export default function BlogIndex({ data }) {
                     alt={article.data.cover_image.alt}
                   />
                 ) : (
-                  <div className="w-full h-48 bg-gray-50"></div>
+                  <div className="h-48 bg-gray-50">
+                    {article.data.video.thumbnail_url && (
+                      <div className="relative flex items-center">
+                        <PlayIcon className="absolute w-full h-24 text-white opacity-95" />
+                        <img
+                          src={article.data.video.thumbnail_url}
+                          className="object-cover w-full h-48"
+                        />
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
               <div className="flex flex-col justify-between flex-1 p-6 bg-white">
