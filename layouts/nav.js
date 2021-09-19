@@ -15,8 +15,6 @@ export default function Navigation() {
   const { data: articles } = useSWR(`/api/articles`, fetcher);
   const { data: navigation } = useSWR(`/api/navigation`, fetcher);
 
-  console.log(navigation);
-
   return (
     <Popover className="relative z-10">
       {({ open }) => (
@@ -118,18 +116,23 @@ export default function Navigation() {
                                   className="flex p-3 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100"
                                 >
                                   <div className="flex-shrink-0 hidden sm:block">
-                                    <img
-                                      className="object-cover w-32 h-20 rounded-md"
-                                      src={article.data.cover_image.url}
-                                      alt=""
-                                    />
+                                    {article.data.cover_image?.url ? (
+                                      <img
+                                        className="object-cover w-32 h-20 rounded-md"
+                                        src={article.data.cover_image.url}
+                                        alt=""
+                                      />
+                                    ) : (
+                                      <div className="w-32 h-20 bg-gray-100 rounded-md"></div>
+                                    )}
                                   </div>
                                   <div className="flex-1 min-w-0 sm:ml-8">
                                     <h4 className="text-base font-medium text-gray-900 truncate">
                                       {RichText.asText(article.data.title)}
                                     </h4>
                                     <p className="mt-1 text-sm text-gray-500">
-                                      {article.data.snippet}
+                                      {article.data.snippet}{" "}
+                                      {article.data.publication_date}
                                     </p>
                                   </div>
                                 </Popover.Button>
