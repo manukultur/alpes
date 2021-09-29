@@ -155,8 +155,7 @@ export default function Navigation() {
                                       {RichText.asText(article.data.title)}
                                     </h4>
                                     <p className="mt-1 text-sm text-gray-500">
-                                      {article.data.snippet}{" "}
-                                      {article.data.publication_date}
+                                      {article.data.snippet}
                                     </p>
                                   </div>
                                 </Popover.Button>

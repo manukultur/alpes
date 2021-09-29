@@ -48,7 +48,7 @@ const Section = ({ title, items }) => {
         {items.map((item) => (
           <li key={item.label}>
             <a
-              href={`/${item.link.uid}`}
+              href={`/${item.link.uid ? item.link.uid : item.slug}`}
               className="text-base text-gray-500 hover:text-gray-900"
             >
               {item.label}
