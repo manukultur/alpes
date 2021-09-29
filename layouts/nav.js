@@ -5,6 +5,8 @@ import { ChevronDownIcon, HomeIcon } from "@heroicons/react/solid";
 import useSWR from "swr";
 import Link from "next/link";
 import { RichText } from "prismic-reactjs";
+import { PlayIcon } from "@heroicons/react/solid";
+
 const fetcher = (url) => fetch(url).then((r) => r.json());
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -147,7 +149,19 @@ export default function Navigation() {
                                         alt=""
                                       />
                                     ) : (
-                                      <div className="w-32 h-20 bg-gray-100 rounded-md"></div>
+                                      <div className="w-32 h-20 bg-gray-100 rounded-md">
+                                        {article.data.video.thumbnail_url && (
+                                          <div className="relative flex items-center">
+                                            <PlayIcon className="absolute w-full h-20 text-white opacity-75" />
+                                            <img
+                                              src={
+                                                article.data.video.thumbnail_url
+                                              }
+                                              className="object-cover w-32 h-20 rounded-md"
+                                            />
+                                          </div>
+                                        )}
+                                      </div>
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0 sm:ml-8">
