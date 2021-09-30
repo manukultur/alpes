@@ -5,8 +5,7 @@ import { Date, RichText } from "prismic-reactjs";
 import { format } from "date-fns";
 import { PlayIcon } from "@heroicons/react/solid";
 
-export default function BlogIndex({ data }) {
-  console.log(data);
+export default function BlogIndex({ articles, page }) {
   return (
     <div className="relative px-4 pt-16 pb-20 bg-gray-50 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
       <div className="absolute inset-0">
@@ -15,15 +14,14 @@ export default function BlogIndex({ data }) {
       <div className="relative mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            Neues aus der Küche
+            {page.data.blog_title}
           </h2>
-          <p className="max-w-2xl mx-auto mt-3 text-xl text-gray-500 sm:mt-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa
-            libero labore natus atque, ducimus sed.
-          </p>
+          <div className="max-w-2xl mx-auto mt-3 text-xl text-gray-500 sm:mt-4">
+            {RichText.asText(page.data.blog_description)}
+          </div>
         </div>
         <div className="grid max-w-lg gap-5 mx-auto mt-12 lg:grid-cols-3 lg:max-w-none">
-          {data.results.map((article) => (
+          {articles.results.map((article) => (
             <div
               key={article.id}
               className="flex flex-col overflow-hidden rounded-lg shadow-lg"
@@ -95,14 +93,17 @@ export default function BlogIndex({ data }) {
 }
 
 export async function getStaticProps() {
-  const data = await client.query(
+  const articles = await client.query(
     Prismic.Predicates.at("document.type", "article"),
     { pageSize: 100, orderings: "[my.article.publication_date desc]" }
   );
 
+  const page = await client.getSingle("blog");
+
   return {
     props: {
-      data,
+      articles,
+      page,
     },
     revalidate: 60,
   };
