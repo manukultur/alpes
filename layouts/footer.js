@@ -11,7 +11,7 @@ const navs = {
   social: [
     {
       name: "Instagram",
-      href: "https://instagram.com/limone.blue",
+      href: "https://www.instagram.com/limone.blue/",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
