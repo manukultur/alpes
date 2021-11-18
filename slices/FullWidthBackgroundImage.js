@@ -10,6 +10,11 @@ export default function Example({ slice }) {
           alt=""
           className="object-cover object-center w-full h-full"
         />
+        {slice.primary.photo_credit && (
+          <p className="absolute text-xs text-white bottom-2 right-3">
+            Foto: {slice.primary.photo_credit}
+          </p>
+        )}
       </div>
       <div
         aria-hidden="true"
