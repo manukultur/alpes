@@ -62,7 +62,7 @@ export default function Navigation() {
               Logo
             </a>
           </Link>
-          <div className="text-sm text-gray-600">+49 (0) 171 867 13 89</div>
+          <div className="text-sm text-gray-600">+49 (0)151 1490 0880</div>
         </div>
       </div>
       <Transition

@@ -48,7 +48,7 @@ export default function Navigation() {
               </div>
               <div className="flex items-center">
                 <p className="text-sm text-gray-500 ">
-                  <a href="tel:+49 (0) 171 867 13 89">+49 (0) 171 867 13 89</a>
+                  <a href="tel:+49 (0)151 1490 0880">+49 (0)151 1490 0880</a>
                 </p>
               </div>
             </div>
